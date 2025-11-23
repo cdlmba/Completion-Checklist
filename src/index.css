@@ -276,14 +276,17 @@ button {
   box-shadow: 0 4px 12px rgba(102, 252, 241, 0.1);
 }
 
-.header-logo {
-  max-width: 300px;
-  width: 100%;
-  height: auto;
+.logo {
+  font-size: 16pt;
+  font-weight: 500;
+  color: #94a3b8;
   margin-bottom: 1.5rem;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  text-decoration: none;
+}
+
+.logo-primary {
+  color: #2dd4bf;
 }
 
 .subtitle {

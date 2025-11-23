@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { checklistData } from './data'
-import headerLogo from './assets/christopherlynnsystems_emailheader.png'
 import './index.css'
 
 function App() {
@@ -102,7 +101,9 @@ function App() {
       </div>
 
       <header>
-        <img src={headerLogo} alt="Christopher Lynn Systems" className="header-logo" />
+        <div className="logo">
+          <span className="logo-primary">christopher lynn</span> | systems
+        </div>
         <h1>25 Ways to Complete Before Moving Forward</h1>
         <p className="subtitle">
           Clean Up Your Messes (Incompletions)
