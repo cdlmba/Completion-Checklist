@@ -102,8 +102,11 @@ function App() {
 
       <header>
         <h1>25 Ways to Complete Before Moving Forward</h1>
-        <p style={{ color: 'var(--accent-color)', marginBottom: '1rem' }}>
+        <p style={{ color: 'var(--accent-color)', marginBottom: '0.5rem' }}>
           Clean Up Your Messes (Incompletions)
+        </p>
+        <p style={{ fontSize: '0.9rem', opacity: 0.7, marginBottom: '2rem', fontStyle: 'italic' }}>
+          Inspired by Jack Canfield's <em>The Success Principles</em>
         </p>
 
         <div className="controls">
