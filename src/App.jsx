@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { checklistData } from './data'
+import headerLogo from './assets/christopherlynnsystems_emailheader.png'
 import './index.css'
 
 function App() {
@@ -101,11 +102,12 @@ function App() {
       </div>
 
       <header>
+        <img src={headerLogo} alt="Christopher Lynn Systems" className="header-logo" />
         <h1>25 Ways to Complete Before Moving Forward</h1>
-        <p style={{ color: 'var(--accent-color)', marginBottom: '0.5rem' }}>
+        <p className="subtitle">
           Clean Up Your Messes (Incompletions)
         </p>
-        <p style={{ fontSize: '0.9rem', opacity: 0.7, marginBottom: '2rem', fontStyle: 'italic' }}>
+        <p className="citation">
           Inspired by Jack Canfield's <em>The Success Principles</em>
         </p>
 
@@ -162,23 +164,7 @@ function App() {
       </main>
 
       {progress === 100 && (
-        <div style={{
-          position: 'fixed',
-          bottom: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          backgroundColor: 'var(--success-color)',
-          color: 'var(--bg-color)',
-          padding: '1rem 2rem',
-          borderRadius: '50px',
-          fontWeight: 'bold',
-          boxShadow: '0 10px 25px rgba(102, 252, 241, 0.5)',
-          animation: 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-          zIndex: 1000,
-          textAlign: 'center',
-          width: '90%',
-          maxWidth: '400px'
-        }}>
+        <div className="success-toast">
           🎉 All Tasks Completed! You are ready to move forward.
         </div>
       )}

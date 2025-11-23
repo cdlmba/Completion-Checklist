@@ -275,3 +275,45 @@ button {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 252, 241, 0.1);
 }
+
+.header-logo {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subtitle {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.citation {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.success-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--success-color);
+  color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 10px 25px rgba(102, 252, 241, 0.5);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
