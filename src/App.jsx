@@ -101,9 +101,6 @@ function App() {
       </div>
 
       <header>
-        <a href="https://christopherlynnsystems.com" className="logo">
-          <span className="logo-primary">christopher lynn</span> | systems
-        </a>
         <h1>25 Ways to Complete Before Moving Forward</h1>
         <p className="subtitle">
           Clean Up Your Messes (Incompletions)
@@ -163,6 +160,13 @@ function App() {
           </div>
         ))}
       </main>
+
+      <footer className="app-footer">
+        <span className="developer-text">Developed by:</span>
+        <a href="https://christopherlynnsystems.com" className="footer-logo">
+          <span className="logo-primary">christopher lynn</span> | systems
+        </a>
+      </footer>
 
       {progress === 100 && (
         <div className="success-toast">
