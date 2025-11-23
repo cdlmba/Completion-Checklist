@@ -101,9 +101,9 @@ function App() {
       </div>
 
       <header>
-        <div className="logo">
+        <a href="https://christopherlynnsystems.com" className="logo">
           <span className="logo-primary">christopher lynn</span> | systems
-        </div>
+        </a>
         <h1>25 Ways to Complete Before Moving Forward</h1>
         <p className="subtitle">
           Clean Up Your Messes (Incompletions)
