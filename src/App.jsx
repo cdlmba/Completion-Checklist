@@ -8,12 +8,25 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [expandedItems, setExpandedItems] = useState([]);
+
   useEffect(() => {
     localStorage.setItem('completion-checklist-v1', JSON.stringify(completedItems));
   }, [completedItems]);
 
   const toggleItem = (id) => {
     setCompletedItems(prev => {
+      if (prev.includes(id)) {
+        return prev.filter(item => item !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
+
+  const toggleExpand = (e, id) => {
+    e.stopPropagation();
+    setExpandedItems(prev => {
       if (prev.includes(id)) {
         return prev.filter(item => item !== id);
       } else {
@@ -110,16 +123,33 @@ function App() {
             <div className="items-grid">
               {category.items.map((item) => {
                 const isCompleted = completedItems.includes(item.id);
+                const isExpanded = expandedItems.includes(item.id);
+
                 return (
                   <div
                     key={item.id}
                     className={`card ${isCompleted ? 'completed' : ''}`}
                     onClick={() => toggleItem(item.id)}
                   >
-                    <div className="checkbox-container">
-                      <span className="checkmark">✓</span>
+                    <div className="card-header">
+                      <div className="checkbox-container">
+                        <span className="checkmark">✓</span>
+                      </div>
+                      <span className="item-text">{item.text}</span>
+                      <button
+                        className="info-btn"
+                        onClick={(e) => toggleExpand(e, item.id)}
+                        title="Why this matters"
+                      >
+                        {isExpanded ? '−' : 'ℹ'}
+                      </button>
                     </div>
-                    <span className="item-text">{item.text}</span>
+
+                    {isExpanded && (
+                      <div className="subtext">
+                        <strong>Coach's Tip:</strong> {item.subtext}
+                      </div>
+                    )}
                   </div>
                 );
               })}
