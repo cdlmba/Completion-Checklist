@@ -22,6 +22,52 @@ function App() {
     });
   };
 
+  const saveProgress = () => {
+    const dataStr = JSON.stringify(completedItems, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `checklist-backup-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const exportReport = () => {
+    const totalItems = checklistData.reduce((acc, cat) => acc + cat.items.length, 0);
+    const completedCount = completedItems.length;
+    const progress = Math.round((completedCount / totalItems) * 100);
+
+    let report = "COMPLETION CHECKLIST REPORT\n";
+    report += "===========================\n";
+    report += `Date: ${new Date().toLocaleDateString()}\n`;
+    report += `Progress: ${progress}% (${completedCount}/${totalItems})\n\n`;
+
+    checklistData.forEach(category => {
+      report += `${category.category.toUpperCase()}\n`;
+      report += "-".repeat(category.category.length) + "\n";
+
+      category.items.forEach(item => {
+        const isDone = completedItems.includes(item.id);
+        const status = isDone ? "[x]" : "[ ]";
+        report += `${status} ${item.text}\n`;
+      });
+      report += "\n";
+    });
+
+    const blob = new Blob([report], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `checklist-report-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const totalItems = checklistData.reduce((acc, cat) => acc + cat.items.length, 0);
   const completedCount = completedItems.length;
   const progress = Math.round((completedCount / totalItems) * 100);
@@ -43,9 +89,18 @@ function App() {
 
       <header>
         <h1>25 Ways to Complete Before Moving Forward</h1>
-        <p style={{ color: 'var(--accent-color)', marginBottom: '3rem' }}>
+        <p style={{ color: 'var(--accent-color)', marginBottom: '1rem' }}>
           Clean Up Your Messes (Incompletions)
         </p>
+
+        <div className="controls">
+          <button onClick={saveProgress} className="btn-secondary">
+            💾 Save Backup
+          </button>
+          <button onClick={exportReport} className="btn-primary">
+            📄 Export Report
+          </button>
+        </div>
       </header>
 
       <main>
@@ -85,7 +140,11 @@ function App() {
           borderRadius: '50px',
           fontWeight: 'bold',
           boxShadow: '0 10px 25px rgba(102, 252, 241, 0.5)',
-          animation: 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+          animation: 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          zIndex: 1000,
+          textAlign: 'center',
+          width: '90%',
+          maxWidth: '400px'
         }}>
           🎉 All Tasks Completed! You are ready to move forward.
         </div>
